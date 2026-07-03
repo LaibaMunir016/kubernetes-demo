@@ -11,8 +11,10 @@ A simple Node.js API containerized with Docker and deployed to Kubernetes, demon
 - **Docker Hub** — image registry
 
 ## Project Structure
+
 kubernetes-demo/
 ├── k8s/
+
 │   ├── deployment.yaml
 │   └── service.yaml
 ├── Dockerfile
