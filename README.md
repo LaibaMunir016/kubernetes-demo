@@ -11,18 +11,16 @@ A simple Node.js API containerized with Docker and deployed to Kubernetes, demon
 - **Docker Hub** — image registry
 
 ## Project Structure
-
-```
 kubernetes-demo/
+├── k8s/
+│   ├── deployment.yaml
+│   └── service.yaml
 ├── Dockerfile
 ├── docker-compose.yaml
-├── deployment.yaml
-├── service.yaml
+├── deploy.sh
 ├── index.js
 ├── package.json
 └── .dockerignore
-```
-
 ## Running Locally with Docker Compose
 
 ```bash
@@ -56,8 +54,8 @@ Image is publicly available at:
 minikube start --driver=docker
 
 # Apply manifests
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/service.yaml
 
 # Check status
 kubectl get pods
@@ -72,14 +70,14 @@ Since the Service type is `NodePort`, retrieve the URL with:
 minikube service kubernetes-demo-api-service --url
 ```
 
-> For cloud deployments (AWS/GCP/Azure), change the Service `type` to `LoadBalancer` in `service.yaml`.
+> For cloud deployments (AWS/GCP/Azure), change the Service `type` to `LoadBalancer` in `k8s/service.yaml`.
 
 ## Kubernetes Resources
 
 | File | Purpose |
 |---|---|
-| `deployment.yaml` | Runs 2 replicas of the API container, sets resource limits, and configures readiness/liveness health checks |
-| `service.yaml` | Exposes the pods on a stable network address inside (and optionally outside) the cluster |
+| `k8s/deployment.yaml` | Runs 2 replicas of the API container, sets resource limits, and configures readiness/liveness health checks |
+| `k8s/service.yaml` | Exposes the pods on a stable network address inside (and optionally outside) the cluster |
 
 ## Health Endpoints
 
@@ -98,7 +96,7 @@ kubectl logs <pod-name>
 kubectl scale deployment kubernetes-demo-api --replicas=3
 
 # Delete all resources
-kubectl delete -f deployment.yaml -f service.yaml
+kubectl delete -f k8s/deployment.yaml -f k8s/service.yaml
 
 # Stop the cluster
 minikube stop
