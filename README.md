@@ -13,16 +13,25 @@ A simple Node.js API containerized with Docker and deployed to Kubernetes, demon
 ## Project Structure
 
 kubernetes-demo/
+
 ├── k8s/
 
 │   ├── deployment.yaml
+
 │   └── service.yaml
+
 ├── Dockerfile
+
 ├── docker-compose.yaml
+
 ├── deploy.sh
+
 ├── index.js
+
 ├── package.json
+
 └── .dockerignore
+
 ## Running Locally with Docker Compose
 
 ```bash
